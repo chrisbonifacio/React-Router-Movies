@@ -17,13 +17,13 @@ const Movie = props => {
       .catch(error => {
         console.error(error);
       });
-  }, []);
+  }, [props.match.params.id]);
 
   // Uncomment this only when you have moved on to the stretch goals
-  // const saveMovie = () => {
-  //   const addToSavedList = props.addToSavedList;
-  //   addToSavedList(movie)
-  // }
+  const saveMovie = () => {
+    const addToSavedList = props.addToSavedList;
+    addToSavedList(movie);
+  };
 
   if (!movie) {
     return <div>Loading movie information...</div>;
@@ -52,7 +52,14 @@ const Movie = props => {
           ))
         )}
       </div>
-      <div className="save-button">Save</div>
+      <div
+        onClick={e => {
+          saveMovie();
+        }}
+        className="save-button"
+      >
+        Save
+      </div>
     </div>
   );
 };
